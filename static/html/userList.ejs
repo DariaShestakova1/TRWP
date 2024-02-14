@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+
+<body>
+    <header>
+        <h1>Список пользователей</h1>
+    </header>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Имя читателя</th>
+                <th>Кнопки</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% for (let index=0; index < readers.length; index++) { %>
+                <tr>
+                    <td>
+                        <%= readers[index].readersName %>
+                    </td>
+                    <td class="table-form-buttons">
+                        <a class="edit-button anim" href="/users/<%=readers[index].readersId %>">Список книг</a>
+                        <form action="/users/delete/<%= readers[index].readersId %>" method="post">
+                            <input type="submit" class="btn btn-sm btn-danger anim" value="Удалить"></input>
+                            <input type="hidden" name="" value="<%=readers[index].readersId%>">
+                        </form>
+                    </td>
+                </tr>
+                <% } %>
+        </tbody>
+    </table>
+    <br><br>
+    <div align="center">
+        <form action="/users/add" method="get">
+            <input type="submit" class="btn btn-sm btn-danger anim" value="Добавить пользователя"></input>
+        </form>
+        <br>
+        <br>
+        <a class="back-button" href="/">Назад</a>
+    </div>
+</body>
+
+</html>
